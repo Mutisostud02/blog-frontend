@@ -144,7 +144,7 @@ export function Post() {
     }
 
     getComments();
-  }, [id, isLoggedIn]);
+  }, [id, isLoggedIn, setIsLoggedIn, setUsername]);
 
   if (!post) {
     return <p>Loading...</p>;

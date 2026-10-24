@@ -4,7 +4,7 @@ export default function Footer() {
         height : "5dvh",
         display : "flex",
         justifyContent : "space-between",
-        position : "absolute",
+        position : "fixed",
         bottom:0,
         minWidth : "100dvw",
         padding : "3px"

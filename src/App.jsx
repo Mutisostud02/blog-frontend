@@ -1,18 +1,36 @@
-import './App.css'
-import Dashboard from './components/Dashboard'
-import Footer from './components/Footer'
-import Header from './components/Header'
+import { useState, createContext } from "react";
+import "./App.css";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import { Outlet } from "react-router";
+
+const LogInContext = createContext({
+  isLoggedIn: false,
+  setIsLoggedIn: () => {},
+  username: "",
+  setUsername: () => {},
+});
 
 function App() {
-  return(
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const [username, setUsername] = useState(
+    localStorage.getItem("username") || "",
+  );
+
+  return (
     <>
-      <Header/>
-      <main>
-        <Dashboard/>
-      </main>
-      <Footer/>
+      <LogInContext
+        value={{ isLoggedIn, setIsLoggedIn, username, setUsername }}
+      >
+        <Header/>
+        <main>
+          <Outlet/>
+        </main>
+        <Footer />
+      </LogInContext>
     </>
-  )
+  );
 }
 
-export default App
+export { LogInContext };
+export default App;
